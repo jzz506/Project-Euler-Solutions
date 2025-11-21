@@ -1,0 +1,43 @@
+# Project Euler - Problem 1: Multiples of 3 or 5
+
+## Problem Description
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+**Find the sum of all the multiples of 3 or 5 below 1000.**
+
+---
+
+## Solution Approach
+
+### Mathematical Derivation (Inclusion-Exclusion Principle)
+To find the sum efficiently without iterating, we can use the arithmetic series formula. However, we must apply the **Inclusion-Exclusion Principle** to avoid double-counting numbers that are multiples of both 3 and 5 (i.e., multiples of 15).
+
+The formula for the sum of an arithmetic series is:
+$$S_n = \frac{n}{2}(a_1 + a_n)$$
+
+Where:
+* $n$ is the number of terms.
+* $a_1$ is the first term.
+* $a_n$ is the last term.
+
+The total sum is calculated as:
+$$\text{Total} = \text{Sum}(3) + \text{Sum}(5) - \text{Sum}(15)$$
+
+---
+
+## Code Implementation
+
+### 1. Python Solution
+This solution is concise and "Pythonic," utilizing a generator expression for memory efficiency.
+
+```python
+def solve_problem_1(limit):
+    """
+    Calculates the sum of all multiples of 3 or 5 below the given limit.
+    """
+    return sum(x for x in range(limit) if x % 3 == 0 or x % 5 == 0)
+
+if __name__ == "__main__":
+    LIMIT = 1000
+    result = solve_problem_1(LIMIT)
+    print(f"The sum of multiples of 3 or 5 below {LIMIT} is: {result}")
